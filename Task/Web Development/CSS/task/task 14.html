@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .overflow{
+            overflow: hidden;
+        }
+        .main{
+            height: 300px;
+            width: 500px;
+            background: url(https://nurimetin.github.io/eliteshoppy.github.io/images/bottom3.jpg);
+            transform: translateX(-10px);
+            background-repeat: no-repeat;
+        }
+        .border{
+            height: 250px;
+            width: 450px;
+            border: 2px solid white;
+            margin: 20px auto;
+            padding-top: 25%;
+            text-align: right;
+            letter-spacing: 5px;
+            transform: translateX(-10px);
+            transition: .5s;
+            opacity: 0;
+        }
+        .main:hover .border{
+            transform: translateX(0px);
+            opacity: 1;
+            color: white;
+        }
+        .main:hover .main{
+            transform: translateX(10px);
+        }
+    </style>
+</head>
+<body>
+   <div class="overflow">
+    <div class="main">
+        <div class="border">up to 55%</div>
+    </div>
+   </div>
+</body>
+</html>

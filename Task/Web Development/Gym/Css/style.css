@@ -1,0 +1,275 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* utilties */
+.container {
+    width: 85%;
+    margin: 0 auto;
+}
+
+.header {
+    background: url("../Images/header-img.png");
+    background-size: 100% 100%;
+    max-width: 100%;
+    height: auto; 
+} 
+.nav {
+    background-color: #303030;
+    padding: 20px 0;
+}
+
+.nav .logo {
+    width: 70px;
+}
+
+.nav .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-ul .nav-li {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.nav-li a {
+    font-size: 25px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: white;
+}
+
+.logo-icon .search {
+    color: white;
+    font-size: 25px;
+}
+
+.logo-icon .bar {
+    color: white;
+    font-size: 25px;
+    display: none;
+}
+
+.header-main {
+    padding: 70px 0;
+}
+
+.header-main .header-h1 {
+    /* min ,max */
+    font-size: clamp(20px, 8.5vw, 125px);
+    color: #ffffff;
+    font-weight: 400;
+}
+
+.header-main .header-p {
+    width: 45%;
+    font-size: 30px;
+    font-size: clamp(16px, 3.4vw, 30px);
+    color: #ffffff;
+    font-weight: 400;
+    margin: 20px 0;
+}
+
+.header-main .btn {
+    border-radius: 4px;
+    background-color: #e8631c;
+    padding: 10px 20px;
+    font-size: 29px;
+    text-transform: uppercase;
+    color: #ffffff;
+    font-weight: 400;
+    border: none;
+}
+
+/* sec1 */
+.sec1 {
+    /* background-color: #e8631c; */
+    background-color: #FF630C;
+    padding: 70px 0;
+}
+
+.sec1 .sec1-text {
+    color: white;
+    text-align: center;
+}
+
+.sec1-text .h1-text {
+    font-size: clamp(20px, 7.5vw, 75px);
+    text-transform: uppercase;
+    font-weight: 700;
+    font-family: "Oswald";
+}
+
+.sec1-text .para-text {
+    font-size: clamp(16px, 3.4vw, 30px);
+    font-weight: 400;
+    width: 60%;
+    margin: 30px auto;
+}
+
+.card-sec .row {
+    display: flex;
+    gap: 20px;
+    /* flex-wrap: wrap; */
+}
+
+.card-sec .row .col {
+    width: 33.33%;
+    /* border: 2px solid; */
+}
+
+
+.card-sec .card-text {
+    background-color: #2C2C2C;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+.card {
+    padding: 20px;
+}
+
+.card-img {
+    height: 300px;
+}
+
+.card-text .card-h3 {
+    font-size: clamp(18px, 3.7vw, 37px);
+    text-transform: uppercase;
+}
+
+.card-text .card-p {
+    font-size: clamp(16px, 3.4vw, 25px);
+    font-weight: 400;
+}
+
+/* sec2 */
+.sec2 {
+    background-color: #FF630C;
+}
+
+.sec2 .row {
+    display: flex;
+    align-items: center;
+}
+
+.sec2 .row .col {
+    width: 50%;
+    /* border: 2px solid; */
+}
+
+.sec2-text {
+    color: #ffffff;
+    padding: 20px;
+}
+
+.sec2-text .sec2-h2 {
+    font-size: clamp(20px, 7.5vw, 65px);
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.sec2-text .sec2-p {
+    font-weight: 400;
+    font-size: clamp(16px, 3.4vw, 30px);
+    width: 90%;
+    margin: 30px 0;
+}
+
+.sec2-text button {
+    text-transform: uppercase;
+    font-weight: 400;
+    color: white;
+    background-color: #303030;
+    padding: 15px 40px;
+    border: none;
+}
+.sec4{
+    background-color: #2C2C2C;
+    color: #ffffff;
+    padding: 20px auto;
+    margin: -4px;
+    padding: 50px;
+}
+.sec4-text .sec4-h2 {
+    font-size: clamp(20px, 7.5vw, 65px);
+    text-transform: uppercase;
+    font-weight: 700;
+    text-align: center;
+    
+}
+.sec4-text .sec4-p{
+    font-weight: 400;
+    font-size: clamp(16px, 3.4vw, 30px);
+    width: 90%;
+    margin: 30px auto;
+}
+.sec4 .sev4-text2 .row{
+    display: flex;
+}
+.footer {
+    background-color: #303030;
+}
+
+.footer .row {
+    display: flex;
+}
+
+.footer .row .col-4 {
+    /* border: 1px solid red; */
+    width: 40%;
+    padding: 20px 0px;
+    margin-left: 20px;   
+}
+.footer .row .col-4 p{
+    padding:10px 0;
+}
+
+.footer .row .col-6 {
+    /* border: 1px solid black; */
+    width: 60%;
+    padding: 20px 0px;  
+}
+
+
+.footer .row .col {
+    width: 33.33%;
+}
+
+.footer .foot-ul .footli a {
+    text-decoration: none;
+    color: white;
+    font-size: 21px;
+}
+
+.footer .foot-ul .footli {
+    list-style: none;
+    padding: 5px 0;
+}
+
+.footer .footer-h4 {
+    color: white;
+    font-size: 33px;
+    text-transform: uppercase;
+    font-weight: 400;
+    margin: 10px 0;
+}
+
+.col-4 p {
+    width: 70%;
+    font-size: 21px;
+    color: #ffffff;
+    font-weight: 400;
+    font-size: clamp(16px, 3.4vw, 25px);
+    font-family: "Montserrat";
+}
+
+.footer .col-4 .col .foot-ul {
+    display: flex;
+    gap: 20px;
+}
