@@ -7,23 +7,28 @@
 </head>
 <body>
     <script>
-        let person = {
-            name:"het",
-            age:21,
-            course:"front-end"
-        }
-
-        let person1 = {
-            name:"Dhaval",
-            age: 23,
-            course:{
-                front:"front-end",
-                back:"back-end",
-                full:"full-stack"
+        class Arithmetic{
+            display = function  x(a,b)
+            {
+                let adda=a;
+                let addb=b;
+                console.log(adda+addb)
+           
+                
+            }
+            display1= function x()
+            {
+                let suba=1;
+                let subb=2;
+                console.log(suba-subb);
+                
             }
         }
+        const user = new Arithmetic();
+        user.display(5,6);
+        const user1 = new Arithmetic();
+        user1.display1();
 
-        console.log(person)
     </script>
 </body>
 </html>

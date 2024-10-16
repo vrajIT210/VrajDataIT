@@ -1,0 +1,30 @@
+{
+    "user":[
+        {"id":1,
+        "name":"het",
+        "course":"mern-stack"
+    },{
+        "id":2,
+        "name":"Vraj",
+        "course":"full-stack"
+    },{
+        "id":3,
+        "name":"Bhavik",
+        "course":"front-end"
+    }
+    ],
+    "admin":[
+        {"id":1,
+        "name":"het",
+        "course":"mern-stack"
+    },{
+        "id":2,
+        "name":"Vraj",
+        "course":"full-stack"
+    },{
+        "id":3,
+        "name":"Bhavik",
+        "course":"front-end"
+    }
+    ]
+}
