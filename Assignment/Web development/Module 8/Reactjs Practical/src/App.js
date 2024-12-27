@@ -1,8 +1,11 @@
 import React from 'react';
-import Greeting from './Greeting';
-import Welcomemess from './Welcomemess';
-import UserCard from './Usercard';
-import Counter from './Counter';
+import App1 from './App1';
+import App2 from './App2';
+//import Greeting from './Greeting';
+//import Welcomemess from './Welcomemess';
+//import UserCard from './Usercard';
+//import Counter from './Counter';
+//import Counter1 from './Counter1';
 
 
 function App() {
@@ -10,13 +13,16 @@ function App() {
   return (
     <div>
       <h1></h1>
-      <h1>Welcome to JSX</h1>
-      <p>{jsx}</p>
+      {/* <h1>Welcome to JSX</h1> */}
+      {/* <p>{jsx}</p> */}
 
-      <Greeting />
+      {/* <Greeting />
       <Welcomemess />
       <UserCard />
-      <Counter />
+      <Counter /> 
+      <Counter1 />
+      <App1 /> */}
+      <App2 />
     </div>
   );
 }
