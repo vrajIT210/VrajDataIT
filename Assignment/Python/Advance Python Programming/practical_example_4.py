@@ -1,0 +1,5 @@
+file=open("sample3.txt","w+")
+file.write("This is a sample text file created by w+ mode in file handling and read a string in file .")
+file.seek(0)
+print(file.read())
+file.close()
