@@ -1,0 +1,15 @@
+# Program to insert elements into an empty list using a for loop and append()
+
+# Initialize an empty list
+my_list = []
+
+# Number of elements to insert
+n = int(input("Enter the number of elements you want to insert: "))
+
+# Insert elements using a for loop
+for i in range(n):
+    element = input(f"Enter element {i + 1}: ")
+    my_list.append(element)
+
+# Display the final list
+print("The final list is:", my_list)
