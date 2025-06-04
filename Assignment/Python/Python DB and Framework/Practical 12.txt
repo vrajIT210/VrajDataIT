@@ -1,0 +1,110 @@
+1. Setup Project & App
+django-admin startproject clinic
+cd clinic
+python manage.py startapp doctors
+
+2. doctors/models.py
+
+from django.db import models
+
+class Doctor(models.Model):
+    name = models.CharField(max_length=100)
+    specialization = models.CharField(max_length=100)
+    email = models.EmailField()
+
+3. doctors/forms.py
+
+from django import forms
+from .models import Doctor
+
+class DoctorForm(forms.ModelForm):
+    class Meta:
+        model = Doctor
+        fields = ['name', 'specialization', 'email']
+
+4. doctors/views.py
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Doctor
+from .forms import DoctorForm
+
+def doctor_list(request):
+    doctors = Doctor.objects.all()
+    return render(request, 'doctors/list.html', {'doctors': doctors})
+
+def doctor_create(request):
+    form = DoctorForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('doctor_list')
+    return render(request, 'doctors/form.html', {'form': form})
+
+def doctor_update(request, pk):
+    doctor = get_object_or_404(Doctor, pk=pk)
+    form = DoctorForm(request.POST or None, instance=doctor)
+    if form.is_valid():
+        form.save()
+        return redirect('doctor_list')
+    return render(request, 'doctors/form.html', {'form': form})
+
+def doctor_delete(request, pk):
+    doctor = get_object_or_404(Doctor, pk=pk)
+    if request.method == 'POST':
+        doctor.delete()
+        return redirect('doctor_list')
+    return render(request, 'doctors/confirm_delete.html', {'doctor': doctor})
+
+5. doctors/urls.py
+from django.urls import path
+from .views import doctor_list, doctor_create, doctor_update, doctor_delete
+
+urlpatterns = [
+    path('', doctor_list, name='doctor_list'),
+    path('new/', doctor_create, name='doctor_create'),
+    path('edit/<int:pk>/', doctor_update, name='doctor_update'),
+    path('delete/<int:pk>/', doctor_delete, name='doctor_delete'),
+]
+Add to clinic/urls.py:
+
+from django.urls import path, include
+
+urlpatterns = [
+    path('', include('doctors.urls')),
+]
+
+6. Templates (in doctors/templates/doctors/)
+
+<h2>Doctors</h2>
+<a href="{% url 'doctor_create' %}">Add Doctor</a>
+<ul>
+  {% for doctor in doctors %}
+    <li>
+      {{ doctor.name }} - {{ doctor.specialization }} - {{ doctor.email }}
+      <a href="{% url 'doctor_update' doctor.pk %}">Edit</a>
+      <a href="{% url 'doctor_delete' doctor.pk %}">Delete</a>
+    </li>
+  {% endfor %}
+</ul>
+
+form.html
+<h2>Doctor Form</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Save</button>
+</form>
+<a href="{% url 'doctor_list' %}">Back</a>
+
+confirm_delete.html
+<h2>Delete Doctor?</h2>
+<p>Are you sure you want to delete "{{ doctor.name }}"?</p>
+<form method="post">
+  {% csrf_token %}
+  <button type="submit">Yes, Delete</button>
+  <a href="{% url 'doctor_list' %}">Cancel</a>
+</form>
+
+7. Run migrations and server
+python manage.py makemigrations
+python manage.py migrate
+python manage.py runserver
+Visit http://127.0.0.1:8000/ to manage doctor profiles with full CRUD.

@@ -1,0 +1,45 @@
+1. forms.py
+
+from django import forms
+
+class RegistrationForm(forms.Form):
+    email = forms.EmailField()
+    phone = forms.CharField(max_length=15)
+
+2. views.py
+from django.shortcuts import render
+from .forms import RegistrationForm
+
+def register(request):
+    return render(request, 'register.html', {'form': RegistrationForm()})
+
+3. urls.py
+from django.urls import path
+from .views import register
+
+urlpatterns = [path('', register)]
+
+4. register.html
+{% load static %}
+<form onsubmit="return validateForm()">
+    {{ form.as_p }}
+    <button type="submit">Submit</button>
+</form>
+<script src="{% static 'validate.js' %}"></script>
+
+5. validate.js
+function validateForm() {
+    let email = document.getElementById('id_email').value;
+    let phone = document.getElementById('id_phone').value;
+    const phoneRegex = /^\d{10}$/;
+
+    if (!email.includes('@')) {
+        alert('Invalid email');
+        return false;
+    }
+    if (!phoneRegex.test(phone)) {
+        alert('Phone must be 10 digits');
+        return false;
+    }
+    return true;
+}

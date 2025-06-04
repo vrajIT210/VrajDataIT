@@ -1,0 +1,29 @@
+styles.css (example style)
+body {
+    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 50px;
+}
+
+h1 {
+    color: #2c3e50;
+    font-size: 2.5em;
+}
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Doctor Finder</title>
+    <link rel="stylesheet" href="{% static 'home/styles.css' %}">
+</head>
+<body>
+    <h1>Welcome to Doctor Finder</h1>
+</body>
+</html>
+
+STATIC_URL = '/static/'
+
+
+python manage.py runserver

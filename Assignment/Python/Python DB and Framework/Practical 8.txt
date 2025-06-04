@@ -1,0 +1,38 @@
+django-admin startproject clinic
+cd clinic
+python manage.py startapp doctors
+
+INSTALLED_APPS = ['doctors', ...]
+
+from django.db import models
+
+class Doctor(models.Model):
+    name = models.CharField(max_length=100)
+    specialization = models.CharField(max_length=100)
+    email = models.EmailField()
+    phone = models.CharField(max_length=15)
+
+    def __str__(self):
+        return self.name
+
+
+from django.contrib import admin
+from .models import Doctor
+
+class DoctorAdmin(admin.ModelAdmin):
+    list_display = ('name', 'specialization', 'email', 'phone')
+    search_fields = ('name', 'specialization')
+
+admin.site.register(Doctor, DoctorAdmin)
+
+
+python manage.py makemigrations
+python manage.py migrate
+python manage.py createsuperuser  # create admin login
+python manage.py runserver
+
+
+
+Visit: http://127.0.0.1:8000/admin/
+Log in with your superuser
+→ Add, edit, and search Doctor records easily.

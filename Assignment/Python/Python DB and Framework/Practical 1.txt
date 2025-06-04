@@ -1,0 +1,56 @@
+django-admin startproject doctor_finder
+cd doctor_finder
+
+python manage.py startapp home
+
+INSTALLED_APPS = [
+    ...
+    'home',
+]
+
+TEMPLATES = [
+    {
+        ...
+        'DIRS': [],
+        ...
+    },
+]
+
+
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('home.urls')),  # Add this line
+]
+
+
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.home, name='home'),
+]
+from django.shortcuts import render
+
+def home(request):
+    return render(request, 'home.html')
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Doctor Finder</title>
+</head>
+<body>
+    <h1>Welcome to Doctor Finder</h1>
+</body>
+</html>
+
+python manage.py runserver
+
+http://127.0.0.1:8000/
+
+OUTPUT:
+Welcome to Doctor Finder

@@ -1,0 +1,55 @@
+django-admin startproject hospital
+cd hospital
+python manage.py startapp patients
+INSTALLED_APPS = ['patients', ...]
+STATIC_URL = '/static/'
+from django import forms
+
+class PatientForm(forms.Form):
+    name = forms.CharField()
+    age = forms.IntegerField()
+    email = forms.EmailField()
+from django.shortcuts import render
+from .forms import PatientForm
+
+def register_patient(request):
+    return render(request, 'patients/register.html', {'form': PatientForm()})
+from django.urls import path
+from .views import register_patient
+
+urlpatterns = [path('', register_patient, name='register')]
+hospital/urls.py
+python
+Copy
+Edit
+from django.urls import path, include
+urlpatterns = [path('', include('patients.urls'))]
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register Patient</title>
+    <script src="{% static 'patients/validate.js' %}"></script>
+</head>
+<body>
+    <h2>Patient Registration</h2>
+    <form onsubmit="return validatePatientForm()">
+        {{ form.as_p }}
+        <button type="submit">Register</button>
+    </form>
+</body>
+</html>
+function validatePatientForm() {
+    const name = document.getElementById('id_name').value.trim();
+    const age = document.getElementById('id_age').value;
+    const email = document.getElementById('id_email').value;
+    
+    if (!name || age <= 0 || !email.includes('@')) {
+        alert('Please fill out all fields correctly.');
+        return false;
+    }
+    return true;
+}
+
+python manage.py runserver
+Visit: http://127.0.0.1:8000/

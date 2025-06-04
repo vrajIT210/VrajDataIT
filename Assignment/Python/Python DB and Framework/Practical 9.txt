@@ -1,0 +1,61 @@
+1. Setup
+
+django-admin startproject doctor_finder
+cd doctor_finder
+python manage.py startapp main
+
+INSTALLED_APPS = ['main', ...]
+
+
+doctor_finder/urls.py
+from django.urls import path, include
+
+urlpatterns = [
+    path('', include('main.urls')),
+]
+
+main/urls.py
+
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.home, name='home'),
+    path('profile/', views.profile, name='profile'),
+    path('contact/', views.contact, name='contact'),
+]
+
+from django.shortcuts import render
+
+def home(request):
+    return render(request, 'home.html')
+
+def profile(request):
+    return render(request, 'profile.html')
+
+def contact(request):
+    return render(request, 'contact.html')
+
+<h1>Welcome to Doctor Finder</h1>
+<a href="/profile/">Doctor Profile</a> | <a href="/contact/">Contact</a>
+profile.html
+html
+Copy
+Edit
+<h1>Doctor Profile</h1>
+<a href="/">Home</a>
+contact.html
+html
+Copy
+Edit
+<h1>Contact Us</h1>
+<a href="/">Home</a>
+
+python manage.py runserver
+Visit pages:
+
+/ → Home
+
+/profile/ → Profile
+
+/contact/ → Contact

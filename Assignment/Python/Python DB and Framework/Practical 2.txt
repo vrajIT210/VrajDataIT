@@ -1,0 +1,48 @@
+Install Django
+pip install Django
+2. Create the HTML Template
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ title }}</title>
+</head>
+<body>
+    <h1>{{ message }}</h1>
+</body>
+</html>
+3. Create the Python Script (render_template.py)
+import os
+import django
+from django.conf import settings
+from django.template import Context, Engine
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+settings.configure(
+    DEBUG=True,
+    TEMPLATES=[{
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+    }]
+)
+
+django.setup()
+
+template_engine = Engine(dirs=[os.path.join(BASE_DIR, 'templates')])
+template = template_engine.get_template('example.html')
+
+context = Context({
+    'title': 'Hello from Django Template',
+    'message': 'This page was rendered using Django template engine!'
+})
+
+rendered_html = template.render(context)
+
+
+print(rendered_html)
+
+with open('output.html', 'w') as f:
+    f.write(rendered_html)
+
+python render_template.py

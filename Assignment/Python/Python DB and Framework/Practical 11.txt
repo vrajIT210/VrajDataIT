@@ -1,0 +1,59 @@
+1. Create Project & App
+
+django-admin startproject clinic
+cd clinic
+python manage.py startapp doctors
+
+2. Configure Database in settings.py
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+
+For MySQL: 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'clinic_db',
+        'USER': 'your_mysql_user',
+        'PASSWORD': 'your_mysql_password',
+        'HOST': 'localhost',
+        'PORT': '3306',
+    }
+}
+
+3. doctors/models.py
+from django.db import models
+
+class Doctor(models.Model):
+    name = models.CharField(max_length=100)
+    specialization = models.CharField(max_length=100)
+    email = models.EmailField()
+
+    def __str__(self):
+        return self.name
+
+4. doctors/admin.py
+from django.contrib import admin
+from .models import Doctor
+
+admin.site.register(Doctor)
+
+5. clinic/settings.py
+Add 'doctors' to INSTALLED_APPS:
+
+INSTALLED_APPS = [
+    ...,
+    'doctors',
+]
+
+6. Migrate & Run
+python manage.py makemigrations doctors
+python manage.py migrate
+python manage.py createsuperuser  # optional, to use admin panel
+python manage.py runserver
+
+7. Access Admin Panel
+Visit http://127.0.0.1:8000/admin/ to add, edit, and delete doctor records via Django admin.

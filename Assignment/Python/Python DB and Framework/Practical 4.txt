@@ -1,0 +1,94 @@
+django-admin startproject doctor_site
+cd doctor_site
+python manage.py startapp profile
+In doctor_site/settings.py:
+
+INSTALLED_APPS = [
+    ...
+    'profile',
+]
+
+STATIC_URL = '/static/'
+
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('profile.urls')),
+]
+profile/urls.py (Create this file)
+
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.doctor_profile, name='doctor_profile'),
+]
+
+profile/views.py
+from django.shortcuts import render
+
+def doctor_profile(request):
+    context = {
+        'name': 'Dr. Jane Smith',
+        'specialization': 'Cardiologist',
+        'bio': 'Dr. Smith has 15 years of experience treating cardiovascular conditions.',
+        'contact': 'jane.smith@hospital.com'
+    }
+    return render(request, 'profile.html', context)
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Doctor Profile</title>
+    <link rel="stylesheet" href="{% static 'profile/style.css' %}">
+</head>
+<body>
+    <div class="profile-card">
+        <h1>{{ name }}</h1>
+        <h2>{{ specialization }}</h2>
+        <p class="bio">{{ bio }}</p>
+        <p class="contact">Contact: {{ contact }}</p>
+    </div>
+</body>
+</html>
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #eef2f7;
+    padding: 50px;
+}
+
+.profile-card {
+    max-width: 500px;
+    margin: 0 auto;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.profile-card h1 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.profile-card h2 {
+    color: #3498db;
+    margin-top: 0;
+}
+
+.bio {
+    margin: 20px 0;
+    font-size: 16px;
+}
+
+.contact {
+    color: #555;
+    font-size: 14px;
+}
+
+python manage.py runserver
